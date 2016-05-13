@@ -16,6 +16,7 @@
             
             $(document).ready(function(){
                 $('#btn-submit').click( function (){
+                    /**mandar aparecer aqui*/
                     var texto = $('#usuario').val();
                     /*O primeiro parametro indica a url onde queremos obter um determinado recurso
                      * o segundo é um conjunto de dados chave - valor que são os dados que queremos mandar para o servidor,
