@@ -17,7 +17,13 @@
             $(document).ready(function(){
                 $('#btn-submit').click( function (){
                     var texto = $('#usuario').val();
-                    $('#msg-carregando').text(texto);
+                    /*O primeiro parametro indica a url onde queremos obter um determinado recurso
+                     * o segundo é um conjunto de dados chave - valor que são os dados que queremos mandar para o servidor,
+                     * o terceiro parametro é uma funçao de resposta
+                     * get (url, dados, funcao de resposta)*/
+                    $.get('ServletAjax', {usuario: texto}, function (textoResposta){
+                         $('#msg-carregando').text(textoResposta);
+                    });
                 });
             });
            

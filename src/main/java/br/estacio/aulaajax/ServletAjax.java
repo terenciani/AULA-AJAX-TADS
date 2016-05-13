@@ -7,6 +7,8 @@ package br.estacio.aulaajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,7 @@ public class ServletAjax extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletAjax</title>");            
+            out.println("<title>Servlet ServletAjax</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletAjax at " + request.getContextPath() + "</h1>");
@@ -43,7 +45,7 @@ public class ServletAjax extends HttpServlet {
             out.println("</html>");
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -56,7 +58,18 @@ public class ServletAjax extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+
+        String nome = null;
+        try {
+            Thread.currentThread().sleep(7000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ServletAjax.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        nome = "Bem Vindo " + request.getParameter("usuario") + "!";
+
+        response.getWriter().write(nome);
+
     }
 
     /**
@@ -71,6 +84,7 @@ public class ServletAjax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     /**
