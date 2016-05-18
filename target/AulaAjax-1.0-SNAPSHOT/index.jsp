@@ -15,17 +15,32 @@
         <script>
             
             $(document).ready(function(){
-                $('#btn-submit').click( function (){
-                    /**mandar aparecer aqui*/
-                    var texto = $('#usuario').val();
-                    /*O primeiro parametro indica a url onde queremos obter um determinado recurso
-                     * o segundo é um conjunto de dados chave - valor que são os dados que queremos mandar para o servidor,
-                     * o terceiro parametro é uma funçao de resposta
-                     * get (url, dados, funcao de resposta)*/
-                    $.get('ServletAjax', {usuario: texto}, function (textoResposta){
-                         $('#msg-carregando').text(textoResposta);
-                    });
-                });
+                $('#msg-carregando').hide();
+                
+                $('#btn-submit').click(function(event) {
+                        
+			var usuarioCliente = $('#usuario').val();
+			/*$.get('ServletAjax', {
+				usuario : usuario
+			}, function(responseText) {
+				$('#msg-carregando').text(responseText);
+			});*/
+        
+                        $.ajax({
+                            type: 'GET',
+                            url: 'ServletAjax',
+                            data: {
+                                usuario : usuarioCliente
+                            },
+                            beforeSend: function(){
+                                $('#msg-carregando').show();
+                            },
+                            success: function(textoDeResposta){
+                                $('#msg-carregando').text(textoDeResposta);
+                            },
+                        });
+		});
+                
             });
            
         </script>
@@ -37,8 +52,9 @@
             <input type="button" id="btn-submit" value="Exibir Olá" />
             
             <div id="msg-carregando">Carregando ..</div>
-            
-            
+           
         </form>
+        
     </body>
 </html>
+

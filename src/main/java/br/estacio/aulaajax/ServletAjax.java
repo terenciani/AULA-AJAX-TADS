@@ -60,15 +60,25 @@ public class ServletAjax extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
 
-        String nome = null;
+        String retorno = null;
+        /*o try-catch abaixo é utilizado somente para atrasar a resposta do servidor para uma melhor visualização da função do Ajax*/
         try {
-            Thread.currentThread().sleep(7000);
+            Thread.currentThread().sleep(3000);
         } catch (InterruptedException ex) {
             Logger.getLogger(ServletAjax.class.getName()).log(Level.SEVERE, null, ex);
         }
-        nome = "Bem Vindo " + request.getParameter("usuario") + "!";
-
-        response.getWriter().write(nome);
+        /*Obtendo o parametro (usuario) enviado pelo método .ajax*/
+        String paramentroUsuario = request.getParameter("usuario");
+        /*Verificação se o parametro não está vazio*/
+        if (paramentroUsuario == "") {
+            retorno = "Digite um usuário";
+        } else {
+            retorno = "Bem vindo " + request.getParameter("usuario") + "!";
+        }
+        /*configurando a resposta para aceitar acentuação*/
+        response.setContentType("text/html; charset=UTF-8");
+        /*escrevendo a resposta*/
+        response.getWriter().write(retorno);
 
     }
 
