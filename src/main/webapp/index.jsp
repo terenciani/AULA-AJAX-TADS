@@ -37,13 +37,21 @@
                             },
                             success: function(textoDeResposta){
                                 $('#msg-carregando').text(textoDeResposta);
+                                $(textoDeResposta).find('texto').each( function (){
+                                    var texto = $(this).text();
+                                    $('#msg-carregando2').html(texto);
+                                });
                                 
+                                $(textoDeResposta).find('msg').each( function (){
+                                    var texto = $(this).find('texto').text();
+                                    $('#msg-carregando3').html(texto);
+                                });
                                 
                                 
                             },
                             error: function (request, status, error) {
                                 alert(request.responseText);
-                            },
+                            }
                         });
 		});
                 
@@ -58,7 +66,8 @@
             <input type="button" id="btn-submit" value="Exibir Olá" />
             
             <div id="msg-carregando">Carregando ..</div>
-           
+            <div id="msg-carregando2">Carregando ..</div>
+            <div id="msg-carregando3">Carregando ..</div>
         </form>
         
     </body>
