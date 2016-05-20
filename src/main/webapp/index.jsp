@@ -30,13 +30,19 @@
                             type: 'GET',
                             url: 'ServletAjax',
                             data: {
-                                usuario : usuarioCliente
+                                usuario : usuarioCliente,
                             },
                             beforeSend: function(){
                                 $('#msg-carregando').show();
                             },
                             success: function(textoDeResposta){
                                 $('#msg-carregando').text(textoDeResposta);
+                                
+                                
+                                
+                            },
+                            error: function (request, status, error) {
+                                alert(request.responseText);
                             },
                         });
 		});

@@ -60,7 +60,7 @@ public class ServletAjax extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
 
-        String retorno = null;
+        String retorno = "<?xml version='1.0'> <root>";
         /*o try-catch abaixo é utilizado somente para atrasar a resposta do servidor para uma melhor visualização da função do Ajax*/
         try {
             Thread.currentThread().sleep(3000);
@@ -71,13 +71,20 @@ public class ServletAjax extends HttpServlet {
         String paramentroUsuario = request.getParameter("usuario");
         /*Verificação se o parametro não está vazio*/
         if (paramentroUsuario == "") {
-            retorno = "Digite um usuário";
+            retorno += "<msg>"
+                        + "<texto>Digite um usuário</texto>"
+                    + "</msg>";
         } else {
-            retorno = "Bem vindo " + request.getParameter("usuario") + "!";
+            retorno += "<msg>"
+                        + "<texto>Bem vindo" + request.getParameter("usuario") + "!</texto>"
+                    + "</msg>";
         }
         /*configurando a resposta para aceitar acentuação*/
         response.setContentType("text/html; charset=UTF-8");
         /*escrevendo a resposta*/
+        
+        retorno += "</root>";
+        
         response.getWriter().write(retorno);
 
     }
