@@ -50,7 +50,7 @@
                                 
                             },
                             error: function (request, status, error) {
-                                alert(request.responseText);
+                                $('#msg-carregando3').html(request.responseText);
                             }
                         });
 		});

@@ -5,6 +5,7 @@
  */
 package br.estacio.aulaajax;
 
+import br.estacio.webservice.CalculadoraWS_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -13,12 +14,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.WebServiceRef;
 
 /**
  *
  * @author Marcelo
  */
 public class ServletAjax extends HttpServlet {
+
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -113,5 +117,21 @@ public class ServletAjax extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    /*
+    private int adicao(int i, int j){
+        int result=0;
+        try { // Call Web Service Operation
+            br.estacio.webservice.CalculadoraWS port = service.getCalculadoraWSPort();
+            // TODO initialize WS operation arguments here
+            int num1 = 0;
+            int num2 = 0;
+            // TODO process result here
+            result = port.adicao(num1, num2);
+            
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+        return result;
+    }*/
+    
 }
